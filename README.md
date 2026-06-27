@@ -1,52 +1,50 @@
-## 🔬 PromptLens — LLM Prompt Strategy Benchmarker
-PromptLens is a real-time benchmarking application designed to evaluate and compare the effectiveness of three core Large Language Model (LLM) prompting strategies: Zero-Shot, Few-Shot, and Chain-of-Thought (CoT).
-
-By analyzing metrics like word count, execution time, and output consistency, PromptLens helps developers and prompt engineers choose the optimal strategy for their specific text-processing tasks.
+# 🔬 PromptLens — LLM Prompt Strategy Benchmarker
 
 
-### 🚀 How It Works
-The application evaluates prompts across three distinct methodologies:
+Compare *Zero-Shot* vs *Few-Shot* vs *Chain-of-Thought* prompting strategies in real time. 
 
-#### Zero-Shot: The model is given a direct instruction without any examples. (Fastest, but sometimes lower consistency).
+PromptLens is a lightweight **Streamlit** web application that automatically runs any given task against the **Groq API** (`llama3-8b-8192`) using Python `requests` to evaluate and compare three core prompting methodologies side by side.
 
-#### Few-Shot: The model is provided with a few high-quality input-output examples to guide its style and structure. (Balanced performance).
+---
 
-#### Chain-of-Thought: The model is instructed to break down its reasoning step-by-step before producing the final output. (Highest accuracy and consistency for complex tasks).
+## 🚀 How It Works
 
-### 🛠️ How to Use the Application
-Define Your Task: In the Task / Instruction text field, enter what you want the AI to do (e.g., Extract data, analyze sentiment, or summarize text).
+When you input a task, the application forks it into three distinct engineering strategies simultaneously:
 
-Provide Input Text: Paste the source text you want processed into the Input Text box.
+*   **Zero-Shot:** Sends your task + input text directly without any guidance.
+*   **Few-Shot:** Automatically injects **two hardcoded examples** before your input to steer the model's style and structure.
+*   **Chain-of-Thought:** Injects the constraint *"Think step by step before answering"* to force explicit reasoning paths.
 
-Run the Benchmark: Click the ⚡ Run Benchmark button.
+---
 
-Analyze Results: Review the side-by-side comparison cards to see the breakdown of:
+## 🛠️ How to Use the Application
 
-Generated Output: The exact response from each strategy.
+1.  **Define Your Task:** In the **Task / Instruction** text field, enter what you want the AI to do (e.g., *Extract data, analyze sentiment, or summarize text*).
+2.  **Provide Input Text:** Paste the source text you want processed into the **Input Text** box.
+3.  **Run the Benchmark:** Click the **⚡ Run Benchmark** button to trigger all 3 API calls.
+4.  **Analyze Results:** Review the clean, 3-column output layout (styled with grey, blue, and green headers) to see the responses side by side.
 
-Metrics: Real-time tracking of Words count, Execution Time (s), and Consistency (%).
+---
 
-Leaderboard: The app will automatically highlight the winning strategy based on the highest consistency score.
+## 📊 Key Performance Metrics & Badges
+Directly underneath each strategy's column output, the app displays real-time analytics badges calculated via custom Python heuristics:
 
-### 📝 Example Benchmarks to Try
-#### 1. Data Extraction (Default)
-Task: Extract all names, job titles, and company names mentioned in the text and format them as a JSON list.
+*   ⏱️ **Execution Time:** Uses precise timer deltas (`time.perf_counter()`) to track raw network and model latency in seconds.
+*   🔤 **Words:** Displays a split-string word count approximation to measure verbosity.
+*   🎯 **Consistency:** A simple string-matching heuristic that checks if key terms from your task appear in the model's response, returning an accuracy percentage.
 
-Input: Yesterday I grabbed coffee with Alex Rivera, a Senior Developer at TechCorp. She mentioned that their VP of Product, Marcus Vance, is looking to hire more remote engineers this quarter.
+🏆 **Leaderboard Summary:** A summary bar at the base of the page automatically highlights and ranks the top-performing strategy based on the highest consistency score.
 
-#### 2. Sentiment Classification
-Task: Classify the sentiment of this product review as Positive, Negative, or Neutral.
+---
 
-Input: I wanted to love this blender, but the motor started smelling like smoke on the third use. Returning it immediately.
+## 📝 Example Benchmarks to Try
 
-#### 3. Smart Summarization
-Task: Summarize this email into 3 bullet points, focusing strictly on actionable next steps.
+### 1. Data Extraction
+*   **Task:** `Extract all names, job titles, and company names mentioned in the text and format them as a JSON list.`
+*   **Input:** `Yesterday I grabbed coffee with Alex Rivera, a Senior Developer at TechCorp. She mentioned that their VP of Product, Marcus Vance, is looking to hire more remote engineers this quarter.`
 
-Input: Hi Team, following up on our meeting yesterday. We need to finalize the design mockups by Thursday so marketing can review them. Please upload your latest assets to the shared drive. Also, Sarah will be out on Friday, so get budget numbers to her by Wednesday.
+### 2. Sentiment Classification
+*   **Task:** `Classify the sentiment of this product review as Positive, Negative, or Neutral.`
+*   **Input:** `I wanted to love this blender, but the motor started smelling like smoke on the third use. Returning it immediately.`
 
-### 📊 Key Performance Metrics Covered
-⏱️ Latency (Time): Measures how fast the model responds under each strategy.
-
-🎯 Consistency: Tracks how reliably the model adheres to formatting rules (like JSON syntax) and reasoning logic.
-
-🔤 Token Efficiency (Words): Displays the length of the generated response to monitor token overhead costs.
+---
