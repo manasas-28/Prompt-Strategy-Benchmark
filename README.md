@@ -36,8 +36,10 @@ Directly underneath each strategy's column output, the app displays real-time an
 🏆 **Leaderboard Summary:** A summary bar at the base of the page automatically highlights and ranks the top-performing strategy based on the highest consistency score.
 
 ---
+## 🚀 Quick Start Example (Try It in 30 Seconds)
 
-## 📝 Example Benchmarks to Try
+To test the application instantly on the live deployment, 
+Example Benchmarks to Try
 
 ### 1. Data Extraction
 *   **Task:** `Extract all names, job titles, and company names mentioned in the text and format them as a JSON list.`
