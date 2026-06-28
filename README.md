@@ -36,6 +36,8 @@ Directly underneath each strategy's column output, the app displays real-time an
 🏆 **Leaderboard Summary:** A summary bar at the base of the page automatically highlights and ranks the top-performing strategy based on the highest consistency score.
 
 ---
+### 🔗 [⚡ Click Here for the Live Demo]([https://docu-agent--manasaaas.replit.app/](https://prompt-strategy-benchmark.streamlit.app/)]
+---
 ## 🚀 Quick Start Example (Try It in 30 Seconds)
 
 To test the application instantly on the live deployment, 
